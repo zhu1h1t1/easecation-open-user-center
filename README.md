@@ -6,7 +6,7 @@
 [![Ant Design](https://img.shields.io/badge/Ant%20Design-6-1677FF?style=for-the-badge&logo=antdesign&logoColor=white)](#项目概览)
 [![Yarn](https://img.shields.io/badge/Yarn-4.5.1-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white)](#环境要求)
 
-![Image](https://github.com/user-attachments/assets/78a4e1d5-46fc-4aec-820b-148b05f7b8b1)
+![EaseCation Open User Center](docs/open-user-center.png)
 
 欢迎来到 `EaseCation Open User Center`。这是 EaseCation 用户中心的开源仓库，也是我们第一个正式公开的 Web 平台项目。
 
