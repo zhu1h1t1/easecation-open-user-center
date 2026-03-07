@@ -1,0 +1,44 @@
+.adminOtherCard {
+    box-shadow: none !important;
+}
+
+.adminOtherCard:hover,
+:global(.ant-card-hoverable).adminOtherCard:hover {
+    box-shadow: none !important;
+    border-color: var(--admin-primary-color) !important;
+}
+
+.adminOtherCard :global(.ant-card-body) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.adminOtherCardCompact {
+    display: inline-block;
+    margin-right: 12px;
+}
+
+.adminOtherCardCompact :global(.ant-card-body) {
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+}
+
+.adminTicketCard {
+    box-shadow: none !important;
+}
+
+.adminTicketCard:hover,
+:global(.ant-card-hoverable).adminTicketCard:hover {
+    box-shadow: none !important;
+    border-color: var(--admin-primary-color) !important;
+}
+
+.adminTicketCardPending {
+    border-left: 2px solid var(--admin-primary-color);
+}
+
+.adminTicketCardMobile :global(.ant-card-body) {
+    padding: 12px 12px;
+}

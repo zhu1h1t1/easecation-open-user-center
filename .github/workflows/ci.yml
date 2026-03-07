@@ -1,0 +1,123 @@
+name: OSS CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: oss-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality-check:
+    name: Quality Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      YARN_ENABLE_GLOBAL_CACHE: 'false'
+      YARN_CACHE_FOLDER: .yarn/cache
+      CHECK_NO_HARDCODED_ZH_SCAN_JSX_TEXT: '1'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Enable Corepack
+        run: corepack enable && corepack prepare yarn@4.5.1 --activate
+
+      - name: Restore Yarn cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .yarn/cache
+            .yarn/install-state.gz
+          key: ${{ runner.os }}-yarn4-oss-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn4-oss-
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Frontend quality checks
+        run: yarn quality:frontend
+
+  guard-checks:
+    name: Guard Checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run large-file and secrets checks
+        env:
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          bash scripts/check-secrets.sh "${BASE_SHA}" "${HEAD_SHA}"
+
+  build-test:
+    name: Build and Test
+    needs:
+      - quality-check
+      - guard-checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      YARN_ENABLE_GLOBAL_CACHE: 'false'
+      YARN_CACHE_FOLDER: .yarn/cache
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Enable Corepack
+        run: corepack enable && corepack prepare yarn@4.5.1 --activate
+
+      - name: Restore Yarn cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .yarn/cache
+            .yarn/install-state.gz
+          key: ${{ runner.os }}-yarn4-oss-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn4-oss-
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Type check
+        run: yarn type-check
+
+      - name: Test
+        run: yarn test
+
+      - name: Build
+        run: yarn build
+
+      - name: Mock backend smoke test
+        run: |
+          PORT=9100 yarn mock:backend &
+          MOCK_PID=$!
+          trap "kill ${MOCK_PID}" EXIT
+          sleep 5
+          curl --fail http://127.0.0.1:9100/healthz

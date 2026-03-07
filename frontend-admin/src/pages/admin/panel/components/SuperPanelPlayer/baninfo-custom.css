@@ -1,0 +1,227 @@
+.ban-alert-purple {
+    background: #f4f0fa !important;
+    border-radius: 8px !important;
+    border: 1px solid #d3adf7 !important;
+    color: #722ed1 !important;
+}
+
+.ban-alert-shadow {
+    border-radius: 10px;
+}
+
+.ban-alert-cyan {
+    background: #e6fffb !important;
+    border-radius: 8px !important;
+    border: 1px solid #87e8de !important;
+    color: #13c2c2 !important;
+}
+
+.ban-alert-pink {
+    background: #fff0f6 !important;
+    border-radius: 8px !important;
+    border: 1px solid #ffadd2 !important;
+    color: #eb2f96 !important;
+}
+
+.ban-alert-blue {
+    background: #e6e8ff !important;
+    border-radius: 8px !important;
+    border: 1px solid #91abff !important;
+    color: #1629fa !important;
+}
+
+.ban-alert-orange {
+    background: #fff7e6 !important;
+    border-radius: 8px !important;
+    border: 1px solid #ffd591 !important;
+    color: #fa8c16 !important;
+}
+
+.ban-alert-yellow {
+    background: #feffe6 !important;
+    border-radius: 8px !important;
+    border: 1px solid #ffec3d !important;
+    color: #faad14 !important;
+}
+
+.ban-alert-green {
+    background: #fdf2ff !important;
+    border-radius: 8px !important;
+    border: 1px solid #d3a3f7 !important;
+    color: #ee82ee !important;
+}
+
+.ban-alert-red {
+    background: #fafafa !important;
+    border-radius: 8px !important;
+    border: 1px solid #d9d9d9 !important;
+    color: #8c8c8c !important;
+}
+
+/* 暗黑模式适配 */
+@media (prefers-color-scheme: dark) {
+    .ban-alert-purple {
+        background: #1a1033 !important;
+        border: 1px solid #531dab !important;
+        color: #b37feb !important;
+    }
+
+    .ban-alert-cyan {
+        background: #002329 !important;
+        border: 1px solid #08979c !important;
+        color: #5cdbd3 !important;
+    }
+
+    .ban-alert-pink {
+        background: #2a0a1a !important;
+        border: 1px solid #c41d7f !important;
+        color: #f759ab !important;
+    }
+
+    .ban-alert-blue {
+        background: #001529 !important;
+        border: 1px solid #1890ff !important;
+        color: #69c0ff !important;
+    }
+
+    .ban-alert-orange {
+        background: #2b1a05 !important;
+        border: 1px solid #d46b08 !important;
+        color: #ffa940 !important;
+    }
+
+    .ban-alert-yellow {
+        background: #2b2a05 !important;
+        border: 1px solid #d4b608 !important;
+        color: #ffd940 !important;
+    }
+
+    .ban-alert-green {
+        background: #2a0a2a !important;
+        border: 1px solid #b37feb !important;
+        color: #d3a3f7 !important;
+    }
+
+    .ban-alert-red {
+        background: #262626 !important;
+        border: 1px solid #434343 !important;
+        color: #bfbfbf !important;
+    }
+}
+
+/* Ant Design 暗黑模式适配 */
+.ant-layout-dark .ban-alert-purple,
+body.dark-mode .ban-alert-purple,
+html[data-theme='dark'] .ban-alert-purple {
+    background: #1a1033 !important;
+    border: 1px solid #531dab !important;
+    color: #b37feb !important;
+}
+
+.ant-layout-dark .ban-alert-cyan,
+body.dark-mode .ban-alert-cyan,
+html[data-theme='dark'] .ban-alert-cyan {
+    background: #002329 !important;
+    border: 1px solid #08979c !important;
+    color: #5cdbd3 !important;
+}
+
+.ant-layout-dark .ban-alert-pink,
+body.dark-mode .ban-alert-pink,
+html[data-theme='dark'] .ban-alert-pink {
+    background: #2a0a1a !important;
+    border: 1px solid #c41d7f !important;
+    color: #f759ab !important;
+}
+
+.ant-layout-dark .ban-alert-blue,
+body.dark-mode .ban-alert-blue,
+html[data-theme='dark'] .ban-alert-blue {
+    background: #001529 !important;
+    border: 1px solid #1890ff !important;
+    color: #69c0ff !important;
+}
+
+.ant-layout-dark .ban-alert-orange,
+body.dark-mode .ban-alert-orange,
+html[data-theme='dark'] .ban-alert-orange {
+    background: #2b1a05 !important;
+    border: 1px solid #d46b08 !important;
+    color: #ffa940 !important;
+}
+
+.ant-layout-dark .ban-alert-yellow,
+body.dark-mode .ban-alert-yellow,
+html[data-theme='dark'] .ban-alert-yellow {
+    background: #2b2a05 !important;
+    border: 1px solid #d4b608 !important;
+    color: #ffd940 !important;
+}
+
+.ant-layout-dark .ban-alert-green,
+body.dark-mode .ban-alert-green,
+html[data-theme='dark'] .ban-alert-green {
+    background: #2a0a2a !important;
+    border: 1px solid #b37feb !important;
+    color: #d3a3f7 !important;
+}
+
+.ant-layout-dark .ban-alert-red,
+body.dark-mode .ban-alert-red,
+html[data-theme='dark'] .ban-alert-red {
+    background: #262626 !important;
+    border: 1px solid #434343 !important;
+    color: #bfbfbf !important;
+}
+
+/* 禁言标签白天模式适配 */
+.ant-tag-purple {
+    background: #f9f0ff !important;
+    border-color: #d3adf7 !important;
+    color: #722ed1 !important;
+}
+
+.ant-tag-purple .ant-tag-close-icon {
+    color: #722ed1 !important;
+}
+
+.ant-tag-purple .ant-tag-close-icon:hover {
+    color: #531dab !important;
+}
+
+/* 禁言标签深色模式适配 */
+@media (prefers-color-scheme: dark) {
+    .ant-tag-purple {
+        background: #1a1033 !important;
+        border-color: #531dab !important;
+        color: #b37feb !important;
+    }
+
+    .ant-tag-purple .ant-tag-close-icon {
+        color: #b37feb !important;
+    }
+
+    .ant-tag-purple .ant-tag-close-icon:hover {
+        color: #d3adf7 !important;
+    }
+}
+
+.ant-layout-dark .ant-tag-purple,
+body.dark-mode .ant-tag-purple,
+html[data-theme='dark'] .ant-tag-purple {
+    background: #1a1033 !important;
+    border-color: #531dab !important;
+    color: #b37feb !important;
+}
+
+.ant-layout-dark .ant-tag-purple .ant-tag-close-icon,
+body.dark-mode .ant-tag-purple .ant-tag-close-icon,
+html[data-theme='dark'] .ant-tag-purple .ant-tag-close-icon {
+    color: #b37feb !important;
+}
+
+.ant-layout-dark .ant-tag-purple .ant-tag-close-icon:hover,
+body.dark-mode .ant-tag-purple .ant-tag-close-icon:hover,
+html[data-theme='dark'] .ant-tag-purple .ant-tag-close-icon:hover {
+    color: #d3adf7 !important;
+}

@@ -1,0 +1,303 @@
+.ticketLayout {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.heroCard {
+    position: relative;
+    overflow: hidden;
+    padding: 24px 26px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(64, 169, 255, 0.16), rgba(135, 208, 104, 0.16));
+    border: 1px solid rgba(64, 169, 255, 0.24);
+    box-shadow: 0 20px 45px rgba(15, 35, 95, 0.08);
+}
+
+.heroCardDark {
+    background: linear-gradient(135deg, rgba(64, 169, 255, 0.22), rgba(47, 84, 235, 0.16));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 45px rgba(4, 12, 41, 0.55);
+}
+
+.heroBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(22, 119, 255, 0.15);
+    color: #1677ff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.heroBadgeDark {
+    background: rgba(24, 144, 255, 0.25);
+    color: #7cc4ff;
+}
+
+.heroTitle {
+    margin: 12px 0 8px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1f1f1f;
+}
+
+.heroTitleDark {
+    color: #ffffff;
+}
+
+.heroSubtitle {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    line-height: 1.65;
+    max-width: 520px;
+}
+
+.heroSubtitleDark {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.heroHighlight {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    padding: 8px 14px;
+    border-radius: 14px;
+    background: rgba(22, 119, 255, 0.12);
+    color: #1259c3;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.heroHighlightDark {
+    background: rgba(64, 169, 255, 0.28);
+    color: #9bc9ff;
+}
+
+.introParagraph {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.introParagraphDark {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.typeFormItem :global(.ant-form-item-label > label) {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.typeSelector {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 8px;
+}
+
+.typeGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.typeGroupHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.typeGroupTitle {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f1f1f;
+}
+
+.typeGroupTitleDark {
+    color: #f5f5f5;
+}
+
+.typeGroupDesc {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 13px;
+}
+
+.typeGroupDescDark {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.typeGrid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.typeCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 18px 18px 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(15, 35, 95, 0.04);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.88);
+    min-height: 160px;
+}
+
+.typeCardDark {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.typeCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(15, 35, 95, 0.08);
+}
+
+.typeCardSelected {
+    border-color: var(--ticket-accent, #1677ff);
+    box-shadow: 0 8px 20px var(--ticket-shadow, rgba(22, 119, 255, 0.2));
+    transform: translateY(-4px);
+}
+
+.typeIcon {
+    width: 46px;
+    height: 46px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--ticket-accent, #1677ff), rgba(255, 255, 255, 0.16));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 14px;
+}
+
+.typeName {
+    font-size: 15px;
+    font-weight: 600;
+    color: inherit;
+}
+
+.typeDesc {
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.55);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.typeDescDark {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.typeNotice {
+    margin-top: 18px;
+    margin-bottom: 24px;
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.typeNoticeDark {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.typeNoticeTitle {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f1f1f;
+}
+
+.typeNoticeTitleDark {
+    color: #ffffff;
+}
+
+.typeNoticeDesc {
+    margin: 8px 0 0;
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(0, 0, 0, 0.65);
+    white-space: pre-line;
+}
+
+.typeNoticeDescDark {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.typePlaceholder {
+    margin-top: 18px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.03);
+    color: rgba(0, 0, 0, 0.55);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.typePlaceholderDark {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 768px) {
+    .heroCard {
+        padding: 22px;
+    }
+
+    .heroTitle {
+        font-size: 20px;
+    }
+
+    .typeGrid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+
+    .typeCard {
+        min-height: 150px;
+        padding: 16px 16px 18px;
+    }
+}
+
+@media (max-width: 520px) {
+    .ticketLayout {
+        gap: 20px;
+    }
+
+    .heroCard {
+        border-radius: 20px;
+    }
+
+    .heroSubtitle {
+        font-size: 13px;
+    }
+
+    .typeGroupDesc {
+        font-size: 12px;
+    }
+}

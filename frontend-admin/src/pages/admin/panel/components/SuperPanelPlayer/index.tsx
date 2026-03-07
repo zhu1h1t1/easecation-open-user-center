@@ -1,0 +1,10 @@
+export { default as BasicInfo } from './BasicInfo';
+export { default as BanInfoComponent } from './BanInfoComponent';
+export { BasicInfoTab } from './BasicInfoTab';
+export { BanTab } from './BanTab';
+export { PlayerActionTab } from './PlayerActionTab';
+export { RecordingTab } from './RecordingTab';
+export { TicketTab } from './TicketTab';
+export { LoginTab } from './LoginTab';
+export { ChatTab } from './ChatTab';
+export { MailTab } from './MailTab';

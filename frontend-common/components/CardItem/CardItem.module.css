@@ -1,0 +1,70 @@
+.dashboard-card {
+    border-radius: 16px;
+    transition:
+        background 0.2s,
+        transform 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex !important;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    padding: 24px 32px;
+    gap: 20px;
+    width: 100%;
+}
+
+.icon-wrapper {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    animation: iconPulse 3s ease-in-out infinite;
+}
+
+/* 新春特效：图标微妙的脉动动画 */
+@keyframes iconPulse {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
+
+.item-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.item-desc {
+    font-size: 14px;
+    line-height: 1.4;
+}

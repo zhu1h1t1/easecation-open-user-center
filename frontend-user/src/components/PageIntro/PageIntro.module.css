@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 16px;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+.text {
+    flex: 1;
+}
+
+/* 移动端：浮动 + 缩小 + 环绕 */
+@media (max-width: 576px) {
+    .container {
+        display: block;
+        overflow: hidden;
+    }
+
+    .image {
+        /* 默认浮动右侧 */
+        float: right;
+        width: 120px !important;
+        max-width: 100%;
+        margin: 0 0 8px 16px;
+    }
+
+    /* 如果需要支持左浮动，可以在组件中动态加class，这里保持默认右浮动 */
+}

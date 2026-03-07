@@ -1,0 +1,45 @@
+{
+    "name": "easecation-open-user-center",
+    "private": true,
+    "workspaces": [
+        "shared",
+        "frontend-user",
+        "frontend-admin",
+        "mock-backend"
+    ],
+    "type": "commonjs",
+    "scripts": {
+        "build:shared": "yarn workspace @ecuc/shared run build",
+        "build:frontend-user": "yarn build:shared && yarn workspace easecation-user-center-frontend-user run build",
+        "build:frontend-admin": "yarn build:shared && yarn workspace easecation-user-center-frontend-admin run build",
+        "build": "yarn build:frontend-user && yarn build:frontend-admin",
+        "dev:user": "yarn workspace easecation-user-center-frontend-user run dev",
+        "dev:admin": "yarn workspace easecation-user-center-frontend-admin run dev",
+        "mock:backend": "yarn workspace easecation-user-center-mock-backend run start",
+        "mock": "yarn build:shared && concurrently \"yarn mock:backend\" \"yarn dev:user\" \"yarn dev:admin\"",
+        "check:dark-mode-api": "node scripts/check-dark-mode-api.mjs",
+        "check:i18n": "node scripts/check-i18n-and-hardcoded-zh.mjs",
+        "check:secrets": "bash scripts/check-secrets.sh",
+        "quality:frontend": "yarn check:i18n && yarn check:dark-mode-api",
+        "type-check:shared": "yarn build:shared && yarn workspace @ecuc/shared run type-check",
+        "type-check:frontend-user": "yarn build:shared && yarn workspace easecation-user-center-frontend-user run type-check",
+        "type-check:frontend-admin": "yarn build:shared && yarn workspace easecation-user-center-frontend-admin run type-check",
+        "type-check:mock-backend": "yarn workspace easecation-user-center-mock-backend run type-check",
+        "type-check": "yarn type-check:shared && yarn type-check:frontend-user && yarn type-check:frontend-admin && yarn type-check:mock-backend",
+        "test:frontend-user": "yarn workspace easecation-user-center-frontend-user run test",
+        "test:frontend-admin": "yarn workspace easecation-user-center-frontend-admin run test",
+        "test:mock-backend": "yarn workspace easecation-user-center-mock-backend run test",
+        "test": "yarn test:frontend-user && yarn test:frontend-admin && yarn test:mock-backend"
+    },
+    "devDependencies": {
+        "concurrently": "^9.1.2",
+        "typescript": "^5.8.3"
+    },
+    "resolutions": {
+        "minimatch@npm:^3.0.2": "npm:3.1.5",
+        "minimatch@npm:^3.0.4": "npm:3.1.5",
+        "minimatch@npm:^3.1.1": "npm:3.1.5",
+        "minimatch@npm:^3.1.2": "npm:3.1.5"
+    },
+    "packageManager": "yarn@4.5.1"
+}

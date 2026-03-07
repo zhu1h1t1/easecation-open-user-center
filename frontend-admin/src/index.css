@@ -1,0 +1,17 @@
+/* 基本样式 */
+body {
+    margin: 0;
+    font-family:
+        -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+        'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.risk-approval-row-pending {
+    background: rgba(250, 173, 20, 0.08);
+}
+
+.risk-approval-row-pending:hover > td {
+    background: rgba(250, 173, 20, 0.15) !important;
+}

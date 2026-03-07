@@ -1,0 +1,535 @@
+/* Annual Report Styles - Minecraft-inspired design */
+
+/* Custom Fonts - 年度报告专用字体 */
+@font-face {
+    font-family: 'Minecraft';
+    src: url('./fonts/font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    /* 优化加载性能，避免字体加载时的闪烁 */
+}
+
+/* Ensure page background is transparent */
+body:has(.app-container),
+html:has(.app-container),
+body:has(.app-container) > *,
+#root:has(.app-container) {
+    background: transparent !important;
+}
+
+/* Prevent page scroll when annual report is active */
+body:has(.app-container),
+html:has(.app-container) {
+    overflow: hidden !important;
+    height: 100vh !important;
+    position: fixed !important;
+    width: 100% !important;
+}
+
+/* Prevent main content area scroll */
+.ant-layout-content:has(.app-container),
+.main-content:has(.app-container) {
+    overflow: hidden !important;
+    height: 100vh !important;
+    position: relative !important;
+}
+
+/* Force video visibility */
+#global-video-bg {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Video Background */
+#global-video-bg {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    object-fit: cover !important;
+    z-index: 0 !important;
+    background: #000 !important;
+    pointer-events: none;
+}
+
+#video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.app-container {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    touch-action: none;
+    /* 禁用默认触摸行为 */
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* 基准尺寸：390px * 844px */
+    --base-width: 390px;
+    --base-height: 844px;
+    /* 计算缩放比例：取宽度和高度的最小缩放比例，确保完整显示 */
+    --scale: min(100vw / var(--base-width), 100vh / var(--base-height));
+    /* 全局字体设置 - 所有文本元素继承此字体 */
+    font-family: 'Minecraft', monospace;
+}
+
+/* 防止页面整体滚动 */
+body:has(.app-container),
+html:has(.app-container) {
+    overflow: hidden !important;
+    height: 100vh !important;
+    position: fixed !important;
+    width: 100% !important;
+}
+
+#app {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+    background: transparent !important;
+    /* 使用基准尺寸作为内容区域的实际尺寸 */
+    width: var(--base-width);
+    height: var(--base-height);
+    /* 应用缩放变换，以中心为基准点 */
+    transform: scale(var(--scale));
+    transform-origin: center center;
+    /* 确保缩放后仍然居中 */
+    margin: auto;
+}
+
+/* Page Styles - scoped to annual report only */
+.app-container .page {
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Page content wrapper - all content should not shrink */
+.app-container .page > * {
+    flex-shrink: 0;
+}
+
+/* Exclude swipe-hint and arrow-hint from flex layout - they should be positioned separately */
+/* These elements are positioned absolutely and don't affect content height calculation */
+.app-container .page > .swipe-hint,
+.app-container .page > .arrow-hint {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0;
+    margin-bottom: 0;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.app-container .page.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.app-container .page.next {
+    transform: translateX(-50%) translateY(100px) scale(1);
+}
+
+.app-container .page.prev {
+    transform: translateX(-50%) translateY(-100px) scale(1);
+}
+
+/* 3D models should be positioned relative to viewport (screen), not page content */
+/* Models use position: fixed to stay at screen edges regardless of page scale */
+/* But model size should scale with the page content to maintain visual proportion */
+/* Models are now outside #app (in .app-container) so they're not affected by #app's transform */
+.app-container [data-draggable-model] {
+    /* Keep position: fixed (default from component) - models stay at screen edges */
+    /* Models are positioned relative to viewport, so they stay at screen left/right edges */
+    /* Model size will be scaled to match page content scale */
+    transform: scale(var(--scale, 1));
+    transform-origin: center center;
+}
+
+/* Typography - scoped to annual report only */
+.app-container .page > h1:first-child,
+.app-container .page > h2:first-child {
+    margin-top: 0;
+    flex-shrink: 0;
+}
+
+.app-container h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    margin: 20px 0;
+    line-height: 1.2;
+    flex-shrink: 0;
+    font-family: 'Minecraft', monospace;
+}
+
+.app-container h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 20px 0;
+    flex-shrink: 0;
+    font-family: 'Minecraft', monospace;
+}
+
+.app-container h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 15px 0;
+    font-family: 'Minecraft', monospace;
+}
+
+.app-container .sub-text {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin: 15px 0;
+    line-height: 1.6;
+    font-family:
+        -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+        'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    /* 普通字体，覆盖继承的 Minecraft 字体 */
+}
+
+/* Minecraft Button - scoped to annual report only */
+.app-container .mc-btn {
+    background: #4caf50;
+    color: #fff;
+    border: 3px solid #2e7d32;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow:
+        0 4px 0 #2e7d32,
+        0 6px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.1s ease;
+    font-family: 'Minecraft', monospace;
+    letter-spacing: 1px;
+}
+
+.app-container .mc-btn:hover {
+    transform: translateY(2px);
+    box-shadow:
+        0 2px 0 #2e7d32,
+        0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.app-container .mc-btn:active {
+    transform: translateY(4px);
+    box-shadow:
+        0 0 0 #2e7d32,
+        0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.app-container .mc-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    transform: none !important;
+}
+
+.app-container .mc-btn:disabled:hover {
+    transform: none !important;
+    box-shadow:
+        0 4px 0 #2e7d32,
+        0 6px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Big Data Block - scoped to annual report only */
+.app-container .big-data-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+    max-width: 400px;
+    flex-shrink: 0;
+}
+
+.app-container .data-label {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+    font-family: 'Minecraft', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.app-container .big-data {
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    font-family: 'Minecraft', monospace;
+    line-height: 1;
+}
+
+.app-container .gold-text {
+    color: #ffd700;
+}
+
+.app-container .green-text {
+    color: #4caf50;
+}
+
+.app-container .red-text {
+    color: #ff5252;
+}
+
+/* Data List - scoped to annual report only */
+.app-container .data-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px 0;
+    flex-shrink: 0;
+    font-family: 'Minecraft', monospace;
+}
+
+.app-container .data-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1rem;
+    font-family: 'Minecraft', monospace;
+}
+
+.app-container .icon-box {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.app-container .data-val {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+/* Block Icon - scoped to annual report only */
+.app-container .block-icon {
+    font-size: 4rem;
+    margin: 20px 0;
+}
+
+/* Arrow Hint - scoped to annual report only */
+.app-container .arrow-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+    animation: bounce 2s infinite;
+    flex-shrink: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Swipe Hint - 可点击的滑动提示 */
+.app-container .swipe-hint {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0;
+    margin-bottom: 0;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    user-select: none;
+    flex-shrink: 0;
+    z-index: 10;
+    padding: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease-in-out;
+    width: auto;
+    min-width: 80px;
+    box-sizing: border-box;
+}
+
+.app-container .swipe-hint.show {
+    opacity: 1;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.app-container .swipe-hint.show:hover {
+    opacity: 0.8;
+}
+
+.app-container .swipe-icon {
+    font-size: 1.5rem;
+    animation: swipeUp 1.5s ease-in-out infinite;
+}
+
+.app-container .swipe-text {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+    font-family: 'Minecraft', monospace;
+}
+
+@keyframes swipeUp {
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-8px);
+        opacity: 0.7;
+    }
+}
+
+/* Rainbow Progress Bar Animation */
+@keyframes rainbowFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+.progress-bar-fill {
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 100%
+    );
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Mobile Responsive - scoped to annual report only */
+@media (max-width: 768px) {
+    .app-container h1 {
+        font-size: 2rem;
+    }
+
+    .app-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .app-container .big-data {
+        font-size: 2.5rem;
+    }
+
+    .app-container .page {
+        padding: 20px 15px 100px 15px;
+    }
+
+    .app-container .mc-btn {
+        padding: 10px 24px;
+        font-size: 1rem;
+    }
+
+    .app-container .data-item {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+}

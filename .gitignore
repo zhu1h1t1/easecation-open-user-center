@@ -1,0 +1,16 @@
+node_modules/
+dist/
+dist-ssr/
+build/
+coverage/
+logs/
+*.log
+*.tsbuildinfo
+.yarn/install-state.gz
+.env
+*.local
+.DS_Store
+.idea/
+*.iml
+.vscode/
+!.vscode/extensions.json

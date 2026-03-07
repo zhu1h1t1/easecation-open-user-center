@@ -1,0 +1,71 @@
+.main-content {
+    padding: 0 24px;
+}
+
+.main-breadcrumb {
+    margin: 16px 0;
+}
+
+.admin-content {
+    padding: 0;
+    height: calc(100vh - 56px);
+    overflow: auto;
+}
+
+.mobile-admin-content {
+    padding: 0 8px;
+    overflow: auto;
+    min-height: calc(100vh - 56px);
+}
+
+@media (max-width: 767px) {
+    .main-content {
+        padding: 0 8px;
+    }
+
+    .main-breadcrumb {
+        margin: 8px 0;
+    }
+}
+
+/* 默认滚动条样式（浅色模式） */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* 暗黑模式滚动条样式 */
+@media (prefers-color-scheme: dark) {
+    ::-webkit-scrollbar-track {
+        background: #1f1f1f;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #434343;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #636363;
+    }
+}
+
+/* 确保暗黑模式下卡片无缝衔接 */
+.ant-layout-dark .ant-card,
+body.dark-mode .ant-card,
+html[data-theme='dark'] .ant-card {
+    background-color: #141414;
+}

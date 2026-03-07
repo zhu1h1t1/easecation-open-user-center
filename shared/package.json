@@ -1,0 +1,25 @@
+{
+    "name": "@ecuc/shared",
+    "private": true,
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "type": "commonjs",
+    "scripts": {
+        "build": "tsc -b",
+        "type-check": "tsc --noEmit",
+        "type-check:watch": "tsc --noEmit --watch"
+    },
+    "files": [
+        "dist/**/*"
+    ],
+    "exports": {
+        ".": "./dist/index.js",
+        "./index": "./dist/index.js",
+        "./types": "./dist/types/index.js",
+        "./package.json": "./package.json",
+        "./types/*": "./dist/types/*.js",
+        "./constants/*": "./dist/constants/*.js",
+        "./utils/MediaisCurrent": "./dist/utils/MediaisCurrent.js"
+    }
+}
